@@ -6,3 +6,6 @@ local key = vim.keymap
 -- directory navigation
 key.set("n","<leader>m", ":NvimTreeFocus<CR>", { noremap = true, silent = true })
 key.set("n","<leader>f", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+
+
+-- telescope plugins configuration

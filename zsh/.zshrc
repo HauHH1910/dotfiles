@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.config/zsh/.histfile
+HISTFILE=~/temp/.histfile
 HISTSIZE=110000
 SAVEHIST=100000
 

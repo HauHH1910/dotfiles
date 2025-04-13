@@ -31,6 +31,3 @@ opt.backup = false
 opt.splitright = true
 opt.splitbelow = true
 
-
--- KeyBinding
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = 'Toggle nvim-tree' })

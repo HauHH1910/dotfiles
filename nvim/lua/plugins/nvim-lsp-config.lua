@@ -52,8 +52,7 @@ local config = function()
 		settings = {
 			languages = {
 				lua = { luacheck, stylua },
-
-							},
+			},
 		},
 	})
 end

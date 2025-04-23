@@ -40,7 +40,7 @@ bindkey '^[[B' history-substring-search-down
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export JAVA_HOME=/usr/local/java/jdk21
-export PATH=$JAVA_HOME/bin:$PATH
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-export PATH=$JAVA_HOME/bin:$PATH
+# export JAVA_HOME=/usr/local/java/jdk21
+# export PATH=$JAVA_HOME/bin:$PATH
+# export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+# export PATH=$JAVA_HOME/bin:$PATH

@@ -1,44 +1,5 @@
--- WezTerm Keybindings Documentation by dragonlobster 
--- ===================================================
--- Leader Key:
--- The leader key is set to ALT + q, with a timeout of 2000 milliseconds (2 seconds).
--- To execute any keybinding, press the leader key (ALT + q) first, then the corresponding key.
-
--- Keybindings:
--- 1. Tab Management:
---    - LEADER + c: Create a new tab in the current pane's domain.
---    - LEADER + x: Close the current pane (with confirmation).
---    - LEADER + b: Switch to the previous tab.
---    - LEADER + n: Switch to the next tab.
---    - LEADER + <number>: Switch to a specific tab (0–9).
-
--- 2. Pane Splitting:
---    - LEADER + |: Split the current pane horizontally into two panes.
---    - LEADER + -: Split the current pane vertically into two panes.
-
--- 3. Pane Navigation:
---    - LEADER + h: Move to the pane on the left.
---    - LEADER + j: Move to the pane below.
---    - LEADER + k: Move to the pane above.
---    - LEADER + l: Move to the pane on the right.
-
--- 4. Pane Resizing:
---    - LEADER + LeftArrow: Increase the pane size to the left by 5 units.
---    - LEADER + RightArrow: Increase the pane size to the right by 5 units.
---    - LEADER + DownArrow: Increase the pane size downward by 5 units.
---    - LEADER + UpArrow: Increase the pane size upward by 5 units.
-
--- 5. Status Line:
---    - The status line indicates when the leader key is active, displaying an ocean wave emoji (🌊).
-
--- Miscellaneous Configurations:
--- - Tabs are shown even if there's only one tab.
--- - The tab bar is located at the bottom of the terminal window.
--- - Tab and split indices are zero-based.
-
-
--- Pull in the wezterm API
 local wezterm = require "wezterm"
+local act = wezterm.action
 
 -- This table will hold the configuration.
 local config = {}
@@ -51,16 +12,30 @@ end
 
 -- For example, changing the color scheme:
 config.color_scheme = 'Tokyo Night Moon'
-config.font =
-    wezterm.font("JetBrainsMono Nerd Font")
+config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 16
 
 config.window_decorations = "RESIZE"
 config.default_domain = 'WSL:Ubuntu-24.04'
 
+-- Normalize newlines for WSL
+config.canonicalize_pasted_newlines = 'LineFeed'
+
 -- tmux
 config.leader = { key = "q", mods = "ALT", timeout_milliseconds = 2000 }
 config.keys = {
+    -- Copy and Paste with Ctrl+C and Ctrl+V
+    {
+        key = 'c',
+        mods = 'CTRL',
+        action = act.CopyTo 'Clipboard'
+    },
+    {
+        key = 'v',
+        mods = 'CTRL',
+        action = act.PasteFrom 'Clipboard'
+    },
+    -- Existing keybindings
     {
         mods = "LEADER",
         key = "c",
@@ -142,6 +117,35 @@ for i = 0, 9 do
     })
 end
 
+-- Mouse bindings to copy only plain text
+config.mouse_bindings = {
+    -- Left-click release: Copy selected text to clipboard as plain text
+    {
+        event = { Up = { streak = 1, button = "Left" } },
+        mods = "NONE",
+        action = act.Multiple {
+            act.CopyTo "Clipboard",
+            act.ClearSelection,
+        },
+    },
+    -- Right-click: Copy if selection exists, paste if not
+    {
+        event = { Down = { streak = 1, button = "Right" } },
+        mods = "NONE",
+        action = wezterm.action_callback(function(window, pane)
+            local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+            if has_selection then
+                -- Copy only plain text by stripping formatting
+                local text = window:get_selection_text_for_pane(pane)
+                window:copy_to_clipboard(text, 'Clipboard')
+                window:perform_action(act.ClearSelection, pane)
+            else
+                window:perform_action(act.PasteFrom("Clipboard"), pane)
+            end
+        end),
+    },
+}
+
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = false
 config.tab_bar_at_bottom = true
@@ -173,3 +177,4 @@ end)
 
 -- and finally, return the configuration to wezterm
 return config
+

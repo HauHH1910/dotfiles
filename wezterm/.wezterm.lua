@@ -50,7 +50,7 @@ if wezterm.config_builder then
 end
 
 -- For example, changing the color scheme:
-config.color_scheme = "Catppuccin Macchiato"
+config.color_scheme = 'Tokyo Night Moon'
 config.font =
     wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 16
@@ -173,4 +173,3 @@ end)
 
 -- and finally, return the configuration to wezterm
 return config
-

@@ -27,3 +27,7 @@ vim.keymap.set('n', '<leader>wh', ':split<cr>', {desc = "[W]indow Split [H]orizo
 vim.keymap.set('v', '<', "gv", {desc = "Indent left in visual mode"})
 vim.keymap.set('v', '>', "gv", {desc = "Indent right in visual mode"})
 
+-- Binding key for nvim
+vim.keymap.set('n', '<leader>ww', '<cmd>:q!<cr>', { desc = "Exit Vim without save"})
+vim.keymap.set('n', '<leader>wq', '<cmd>:wq<cr>', { desc = "Exit Vim with save"})
+

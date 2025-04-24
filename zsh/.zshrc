@@ -34,6 +34,11 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# Auto-start tmux in WSL
+if [[ -z "$TMUX" && "$TERM_PROGRAM" != "vscode" ]]; then
+    tmux attach-session -t 0 || tmux new-session
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 

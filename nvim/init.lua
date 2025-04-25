@@ -27,9 +27,9 @@ local opts = {
     }
 }
 
-require("config.options")
-require("config.keymap")
-require("config.autocmds")
+require("core.options")
+require("core.keymap")
+require("core.autocmds")
 -- Setup lazy, this should always be last
 -- Tell lazy that all plugin specs are found in the plugins directory
 -- Pass it the options

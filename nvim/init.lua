@@ -8,7 +8,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- lastest statble release
+        "--branch=stable", 
         lazypath
     })
 end
@@ -27,9 +27,9 @@ local opts = {
     }
 }
 
-require("core.options")
-require("core.keymap")
-require("core.autocmds")
+require("config.options")
+require("config.keymap")
+require("config.autocmds")
 -- Setup lazy, this should always be last
 -- Tell lazy that all plugin specs are found in the plugins directory
 -- Pass it the options

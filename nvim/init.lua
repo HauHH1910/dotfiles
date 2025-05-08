@@ -1,1 +1,2 @@
-vim.wo.number = true
+require("config.keymaps")
+require("config.lazy")

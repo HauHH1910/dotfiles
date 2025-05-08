@@ -1,13 +1,12 @@
 -- Indentation guides
 return {
-  -- https://github.com/lukas-reineke/indent-blankline.nvim
-  "lukas-reineke/indent-blankline.nvim",
-  event = 'VeryLazy',
-  main = "ibl",
-  opts = {
-    enabled = true,
-    indent = {
-      char = '|',
-    },
-  },
+	"lukas-reineke/indent-blankline.nvim",
+	main = "ibl",
+	opts = function(_, opts)
+		-- Other blankline configuration here
+		return require("indent-rainbowline").make_opts(opts)
+	end,
+	dependencies = {
+		"TheGLander/indent-rainbowline.nvim",
+	},
 }

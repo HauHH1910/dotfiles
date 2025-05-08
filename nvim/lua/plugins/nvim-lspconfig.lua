@@ -23,7 +23,7 @@ return {
     -- https://github.com/folke/neodev.nvim
     { 'folke/neodev.nvim', opts = {} },
   },
-  config = function ()
+  config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
       -- Install these LSPs automatically
@@ -33,7 +33,7 @@ return {
         'html',
         'gradle_ls',
         'groovyls',
-        'yamlls'
+        'yamlls',
         'lua_ls',
         'jdtls',
         'jsonls',
@@ -62,9 +62,34 @@ return {
     end
 
     -- Call setup on each LSP server
-    require('mason-lspconfig').setup_handlers({
-      function(server_name)
-        -- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
+    -- require('mason-lspconfig').setup_handlers({
+    --   function(server_name)
+    --     -- Don't call setup for JDTLS Java LSP because it will be setup from a separate config
+    --     if server_name ~= 'jdtls' then
+    --       lspconfig[server_name].setup({
+    --         on_attach = lsp_attach,
+    --         capabilities = lsp_capabilities,
+    --       })
+    --     end
+    --   end
+    -- })
+
+    local mason_lspconfig = require('mason-lspconfig')
+
+    if mason_lspconfig.setup_handlers then
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          if server_name ~= 'jdtls' then
+            lspconfig[server_name].setup({
+              on_attach = lsp_attach,
+              capabilities = lsp_capabilities,
+            })
+          end
+        end
+      })
+    else
+      -- fallback: just use default setup
+      for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
         if server_name ~= 'jdtls' then
           lspconfig[server_name].setup({
             on_attach = lsp_attach,
@@ -72,7 +97,7 @@ return {
           })
         end
       end
-    })
+    end
 
     -- Lua LSP settings
     lspconfig.lua_ls.setup {

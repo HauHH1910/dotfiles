@@ -1,7 +1,7 @@
 # Dotfiles configuration
 ---
 
-My personal dotfiles configuration for coding.
+This dotfiles configuration is for Java and React development using WSL2 in windows
 
 ## Technologies:
 - Neovim
@@ -21,4 +21,3 @@ git clone git@github.com:HauHH1910/dotfiles.git
 ```
 
 
-# Dot Files

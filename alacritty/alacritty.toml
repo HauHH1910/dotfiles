@@ -1,0 +1,12 @@
+[window]
+decorations = "None"
+startup_mode = "Windowed"
+opacity = 0.9
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular"}
+size = 15
+
+[terminal]
+osc52 = "CopyPaste"
+shell = { program = "wsl.exe ~ -d Ubuntu-24.04"}

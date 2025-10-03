@@ -45,9 +45,9 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias nvim='nvim'
 alias c='clear'
+alias ld='lazydocker'
 # Path & tools
 export PATH="$PATH:/opt/nvim/"
-
 # nvm setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

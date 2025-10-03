@@ -46,11 +46,6 @@ vim.o.expandtab = true
 vim.wo.relativenumber = true
 
 --KEYMAPS
-
-vim.keymap.set("n", "<Tab>", function()
-    require("oil").open()
-end)
-
 vim.keymap.set("n", "<C-j>", ":m .+1<CR>==", { silent = true })
 vim.keymap.set("n", "<C-k>", ":m .-2<CR>==", { silent = true })
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { silent = true })
@@ -87,7 +82,3 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-
-
-local treesitter = require('treesitter.treesitter_setup')
-treesitter.setup()

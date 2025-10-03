@@ -5,7 +5,7 @@ zinit_home="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 source "$zinit_home/zinit.zsh"
 
 # Themes
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/tokyonight_storm.omp.json)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/amro.omp.json)"
 
 # Plugins
 zinit light zsh-users/zsh-syntax-highlighting

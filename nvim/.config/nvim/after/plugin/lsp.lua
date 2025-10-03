@@ -37,6 +37,14 @@ vim.lsp.config('lua_ls', {
     }
 })
 
+vim.lsp.config('json-lsp', {
+    settings = {
+        json = {
+             validate = { enable = true },
+        }
+    }
+})
+
 vim.lsp.config('ts_ls', {
     on_attach = function(client)
         vim.opt.tabstop = 2

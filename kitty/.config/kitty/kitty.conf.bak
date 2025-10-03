@@ -1,0 +1,20 @@
+shell /usr/bin/zsh
+
+map ctrl+shift+enter new_window
+
+font_family JetBrainsMono Nerd Font
+font_size 16.0
+# cursor_text_color #111111
+cursor_shape block
+enable_audio_bell no
+window_alert_on_bell no
+remember_window_size  yes
+initial_window_width  640
+initial_window_height 400
+tab_bar_style fade
+
+
+# BEGIN_KITTY_THEME
+# Nightfly
+include current-theme.conf
+# END_KITTY_THEME

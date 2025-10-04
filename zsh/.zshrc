@@ -54,7 +54,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Fuzzy finder (fzf)
-eval "$(fzf --zsh)"
+source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
 #eval "$(zoxide init --cmd cd zsh)"
 # sdkman setup
 export SDKMAN_DIR="$HOME/.sdkman"
